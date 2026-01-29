@@ -14,7 +14,7 @@ function App() {
       setIsAuthenticated(true)
       setError('')
     } else {
-      setError('Incorrect password. Try again.')
+      setError('try again bacon!')
     }
   }
 
@@ -22,8 +22,12 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>H + T's Valentine's Day</h1>
-          <p>Enter the secret password to continue 💌</p>
+          <img
+            src="/images/pixel-heart.gif"
+            alt="Pixel heart"
+            className="pixel-heart"
+          />
+          <p className='instructions-text'>Enter the secret password to continue 💌</p>
           <form onSubmit={handleSubmit} className="password-form">
             <input
               type="password"

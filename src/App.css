@@ -17,6 +17,22 @@
 .App-header h1{
   margin-bottom: 25px;
 }
+
+.pixel-heart {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 25px;
+}
+
+.error-text {
+  font-size: small;
+  margin-top: 25px;
+} 
+.instructions-text {
+ font-size: medium;
+}
+
+
 .card {
   padding: 2em;
 }
