@@ -29,10 +29,23 @@
   margin-top: 25px;
 } 
 .instructions-text {
-  font-family: 'Helvetica', sans-serif;
-  font-size: medium;
+  font-family: 'Helvetica';
+  font-size: 3vw;
 }
 
+input.password-input {
+  border: 1px solid;
+  color: black;
+  margin: 20px;
+  padding: 16px;
+  border-radius: 10px;
+  font-weight: 100;
+}
+
+input.password-input::placeholder {
+  color: gray;
+  letter-spacing: .5px;
+}
 .card {
   padding: 2em;
 }
