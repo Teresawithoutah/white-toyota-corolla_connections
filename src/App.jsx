@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import heart from "/assets/pixel-heart.gif";
 
 
 const CORRECT_PASSWORD = 'Passaic' // change this to whatever you want
