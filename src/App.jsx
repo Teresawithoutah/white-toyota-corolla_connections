@@ -23,8 +23,8 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img
-            src="../images/frog3.webp"
-            alt="Pixel heart"
+            src="./images/frog3.webp"
+            alt="frog heart"
             className="pixel-heart"
           />
           <p className='instructions-text'>Enter the secret password to continue 💌</p>
