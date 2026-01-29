@@ -33,7 +33,10 @@
   font-size: 3vw;
   margin-bottom: 25px;
 }
-
+.instructions-subtext {
+  font-size: small;
+  margin-bottom: 25px;
+}
 input.password-input {
   border: 1px solid;
   color: black;
