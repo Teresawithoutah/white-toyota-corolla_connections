@@ -23,7 +23,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img
-            src="./images/frog3.webp"
+            src="/assets/frog3.webp"
             alt="frog heart"
             className="pixel-heart"
           />
