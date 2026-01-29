@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import heart from "/assets/pixel-heart.gif";
+
 
 const CORRECT_PASSWORD = 'Passaic' // change this to whatever you want
 
@@ -22,11 +24,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <img
-            src="/assets/frog3.webp"
-            alt="frog heart"
-            className="pixel-heart"
-          />
+        <img src={heart} alt="heart" />
           <p className='instructions-text'>Enter the secret password to continue 💌</p>
           <form onSubmit={handleSubmit} className="password-form">
             <input
