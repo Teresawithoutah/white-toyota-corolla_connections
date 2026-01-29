@@ -4,6 +4,7 @@ import Board from './Board';
 import Controls from './Controls';
 import Status from './Status';
 import Results from './Results';
+import SolvedGroups from './SolvedGroups';
 import './Game.css';
 
 const MAX_MISTAKES = 4;
@@ -73,7 +74,20 @@ function Game({ puzzle }) {
   const [incorrectIds, setIncorrectIds] = useState([]);
   const [hint, setHint] = useState('');
   const [gameState, setGameState] = useState('playing'); // 'playing', 'won', 'lost'
-  const [solvedCategories, setSolvedCategories] = useState([]);
+  const [solvedCategories, setSolvedCategories] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.puzzleId === puzzle.id) {
+          return parsed.solvedCategories || [];
+        }
+      } catch (e) {
+        // Invalid saved data, start fresh
+      }
+    }
+    return [];
+  });
 
   // Save game state to localStorage
   useEffect(() => {
@@ -82,10 +96,11 @@ function Game({ puzzle }) {
       tiles,
       selectedIds,
       solvedIds,
-      mistakes
+      mistakes,
+      solvedCategories
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
-  }, [tiles, selectedIds, solvedIds, mistakes, puzzle.id]);
+  }, [tiles, selectedIds, solvedIds, mistakes, solvedCategories, puzzle.id]);
 
   // Check for win condition
   useEffect(() => {
@@ -101,11 +116,14 @@ function Game({ puzzle }) {
     }
   }, [mistakes]);
 
+  // Filter out solved tiles from display
+  const unsolvedTiles = tiles.filter(t => !solvedIds.includes(t.id));
+
   const handleTileClick = useCallback((tileId) => {
     if (gameState !== 'playing') return;
     
-    const tile = tiles.find(t => t.id === tileId);
-    if (!tile || solvedIds.includes(tileId)) return;
+    const tile = unsolvedTiles.find(t => t.id === tileId);
+    if (!tile) return;
 
     setSelectedIds(prev => {
       if (prev.includes(tileId)) {
@@ -118,19 +136,18 @@ function Game({ puzzle }) {
       return prev; // Already at max
     });
     setHint(''); // Clear hint when selection changes
-  }, [tiles, solvedIds, gameState]);
+  }, [unsolvedTiles, gameState]);
 
   const handleTileKeyDown = useCallback((e, tileId, index) => {
     if (gameState !== 'playing') return;
 
-    const tile = tiles.find(t => t.id === tileId);
-    if (!tile || solvedIds.includes(tileId)) return;
+    const tile = unsolvedTiles.find(t => t.id === tileId);
+    if (!tile) return;
 
     // Arrow key navigation
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || 
         e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
-      const unsolvedTiles = tiles.filter(t => !solvedIds.includes(t.id));
       const currentIndex = unsolvedTiles.findIndex(t => t.id === tileId);
       
       let nextIndex = currentIndex;
@@ -152,12 +169,12 @@ function Game({ puzzle }) {
       e.preventDefault();
       handleTileClick(tileId);
     }
-  }, [tiles, solvedIds, gameState, handleTileClick]);
+  }, [unsolvedTiles, gameState, handleTileClick]);
 
   const checkOneAway = useCallback((selectedTileIds) => {
     if (selectedTileIds.length !== 4) return false;
 
-    const selectedTiles = tiles.filter(t => selectedTileIds.includes(t.id));
+    const selectedTiles = unsolvedTiles.filter(t => selectedTileIds.includes(t.id));
     
     // Check each category to see if 3 of 4 match
     for (const category of puzzle.categories) {
@@ -170,12 +187,12 @@ function Game({ puzzle }) {
       }
     }
     return false;
-  }, [tiles, puzzle]);
+  }, [unsolvedTiles, puzzle]);
 
   const handleSubmit = useCallback(() => {
     if (selectedIds.length !== 4 || gameState !== 'playing') return;
 
-    const selectedTiles = tiles.filter(t => selectedIds.includes(t.id));
+    const selectedTiles = unsolvedTiles.filter(t => selectedIds.includes(t.id));
     const categoryIndices = selectedTiles.map(t => t.categoryIndex);
     
     // Check if all 4 tiles belong to the same category
@@ -183,9 +200,10 @@ function Game({ puzzle }) {
     
     if (allSameCategory) {
       // Correct! Mark as solved
+      const categoryIndex = categoryIndices[0];
       setSolvedIds(prev => [...prev, ...selectedIds]);
       setSolvedCategories(prev => {
-        const categoryIndex = categoryIndices[0];
+        // Add category to the end (newest solved at bottom)
         if (!prev.includes(categoryIndex)) {
           return [...prev, categoryIndex];
         }
@@ -210,7 +228,7 @@ function Game({ puzzle }) {
       
       setMistakes(prev => prev + 1);
     }
-  }, [selectedIds, tiles, gameState, checkOneAway]);
+  }, [selectedIds, unsolvedTiles, gameState, checkOneAway]);
 
   const handleDeselectAll = useCallback(() => {
     setSelectedIds([]);
@@ -220,13 +238,10 @@ function Game({ puzzle }) {
   const handleShuffle = useCallback(() => {
     if (gameState !== 'playing') return;
     
-    const unsolvedTiles = tiles.filter(t => !solvedIds.includes(t.id));
+    // Only shuffle unsolved tiles (solved ones are already removed from display)
     const shuffledUnsolved = shuffleArray(unsolvedTiles);
-    const solvedTiles = tiles.filter(t => solvedIds.includes(t.id));
-    
-    // Recombine: keep solved tiles, shuffle unsolved
-    setTiles([...solvedTiles, ...shuffledUnsolved]);
-  }, [tiles, solvedIds, gameState]);
+    setTiles(shuffledUnsolved);
+  }, [unsolvedTiles, gameState]);
 
   const handleReset = useCallback(() => {
     if (window.confirm('Are you sure you want to start a new game? Your progress will be lost.')) {
@@ -242,7 +257,6 @@ function Game({ puzzle }) {
     }
   }, [puzzle]);
 
-  const unsolvedTiles = tiles.filter(t => !solvedIds.includes(t.id));
   const canSubmit = selectedIds.length === 4 && gameState === 'playing';
   const hasUnsolvedTiles = unsolvedTiles.length > 0;
 
@@ -271,10 +285,15 @@ function Game({ puzzle }) {
       
       {gameState === 'playing' && (
         <>
+          <SolvedGroups 
+            solvedCategories={solvedCategories}
+            puzzle={puzzle}
+          />
+          
           <Board
-            tiles={tiles}
+            tiles={unsolvedTiles}
             selectedIds={selectedIds}
-            solvedIds={solvedIds}
+            solvedIds={[]}
             incorrectIds={incorrectIds}
             onTileClick={handleTileClick}
             onTileKeyDown={handleTileKeyDown}
