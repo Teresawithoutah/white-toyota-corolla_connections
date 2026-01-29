@@ -5,7 +5,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="test">
+    <div className="App">
       <header className="App-header">
         <h1>White Toyota Corolla Connections</h1>
         <p>Connection based game gift!</p>
