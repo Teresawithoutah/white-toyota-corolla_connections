@@ -26,12 +26,12 @@ function Status({ mistakes, maxMistakes, hint, gameState }) {
       )}
       {gameState === 'won' && (
         <div className="game-message won" role="alert">
-          🎉 Congratulations! You solved all the connections!
+          🎉 YOU SO SMART! SMART BABIT!
         </div>
       )}
       {gameState === 'lost' && (
         <div className="game-message lost" role="alert">
-          Game Over! You've reached the maximum number of mistakes.
+          Game Over! YOU LOST HAHAHHAHAHAHHA!
         </div>
       )}
     </div>

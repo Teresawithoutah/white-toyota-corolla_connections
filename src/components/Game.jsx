@@ -244,7 +244,7 @@ function Game({ puzzle }) {
   }, [unsolvedTiles, gameState]);
 
   const handleReset = useCallback(() => {
-    if (window.confirm('Are you sure you want to start a new game? Your progress will be lost.')) {
+    if (window.confirm('U SURE ABOUT THAT?? U WILL LOSE UR PROGRESS!!')) {
       localStorage.removeItem(STORAGE_KEY);
       setTiles(shuffleArray(flattenPuzzle(puzzle)));
       setSelectedIds([]);
@@ -264,7 +264,7 @@ function Game({ puzzle }) {
     <div className="game-container">
       <div className="game-header">
         <div className="game-header-top">
-          <h1 className="game-title">Connections</h1>
+          <h1 className="game-title">Babit Connections</h1>
           <button 
             className="reset-button" 
             onClick={handleReset}
@@ -273,7 +273,7 @@ function Game({ puzzle }) {
             New Game
           </button>
         </div>
-        <p className="game-subtitle">Find groups of four that share a common theme</p>
+        <p className="game-subtitle">Hint: I love you!</p>
       </div>
       
       <Status 
