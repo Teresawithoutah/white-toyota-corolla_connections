@@ -29,7 +29,7 @@ function App() {
             alt="Pixel heart"
             className="pixel-heart"
           />
-          <h1 className='instructions-text'>Where did we meet? 💌</h1>
+          <h1 className='instructions-text'>What town did we meet in? 💌</h1>
           <p className='instructions-subtext'>*Enter the secret password to continue.</p>
           <form onSubmit={handleSubmit} className="password-form">
             <input
