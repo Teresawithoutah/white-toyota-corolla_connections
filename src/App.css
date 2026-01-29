@@ -29,9 +29,9 @@
   margin-top: 25px;
 } 
 .instructions-text {
- font-size: medium;
+  font-family: 'Helvetica', sans-serif;
+  font-size: medium;
 }
-
 
 .card {
   padding: 2em;
