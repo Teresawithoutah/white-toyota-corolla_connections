@@ -1,0 +1,138 @@
+.results {
+  margin-top: 40px;
+  padding: 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results-title {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.category-card {
+  background-color: #fff;
+  border: 3px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.category-card.solved {
+  border-color: #4caf50;
+  background-color: #f1f8f4;
+}
+
+.category-card.revealed {
+  border-color: #ff5252;
+  background-color: #fff5f5;
+}
+
+.category-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #eee;
+}
+
+.category-number {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-color: #646cff;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.category-card.solved .category-number {
+  background-color: #4caf50;
+}
+
+.category-card.revealed .category-number {
+  background-color: #ff5252;
+}
+
+.category-name {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin: 8px 0 4px 0;
+}
+
+.category-description {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.category-difficulty {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.category-words {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-word {
+  padding: 10px 16px;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.category-card.solved .category-word {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.category-card.revealed .category-word {
+  background-color: #ffebee;
+  border-color: #ff5252;
+  color: #c62828;
+}
+
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-title {
+    font-size: 24px;
+  }
+}

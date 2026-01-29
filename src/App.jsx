@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import pixelHeart from './assets/pixel-heart.gif'
-
+import Game from './components/Game'
+import { samplePuzzle } from './data/puzzles'
 
 const CORRECT_PASSWORD = 'Passaic' // change this to whatever you want
 
@@ -51,11 +52,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>H + T's Valentine's Day </h1>
-        <p>Connection based vday gift!</p>
-        {/* Put the rest of your actual app content here */}
-      </header>
+      <div className="game-wrapper">
+        <Game puzzle={samplePuzzle} />
+      </div>
     </div>
   )
 }
