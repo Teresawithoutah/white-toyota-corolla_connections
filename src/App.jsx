@@ -23,7 +23,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img
-            src="/images/pixel-heart.gif"
+            src="../images/pixel-heart.gif"
             alt="Pixel heart"
             className="pixel-heart"
           />
