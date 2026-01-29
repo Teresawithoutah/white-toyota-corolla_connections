@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>White Toyota Corolla Connections</h1>
-        <p>Connection based game gift!</p>
+        <h1>H + T's Valentine's Day </h1>
+        <p>Connection based vday gift!</p>
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
