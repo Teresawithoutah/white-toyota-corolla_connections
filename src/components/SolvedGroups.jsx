@@ -1,5 +1,13 @@
 import './SolvedGroups.css';
 
+// Color palette for solved groups (4 different colors)
+const GROUP_COLORS = [
+  { bg: '#ff0000', border: '#ff0000' }, // Red
+  { bg: '#2196f3', border: '#2196f3' }, // Blue
+  { bg: '#6200ff', border: '#6200ff' }, // Purple
+  { bg: '#ffcd05', border: '#ffcd05' }, // Yellow
+];
+
 function SolvedGroups({ solvedCategories, puzzle }) {
   if (solvedCategories.length === 0) return null;
 
@@ -10,11 +18,16 @@ function SolvedGroups({ solvedCategories, puzzle }) {
         {solvedCategories.map((categoryIndex, displayIndex) => {
           const category = puzzle.categories[categoryIndex];
           const categoryTiles = puzzle.categories[categoryIndex].words;
+          const color = GROUP_COLORS[displayIndex % GROUP_COLORS.length];
           
           return (
             <div
               key={categoryIndex}
               className="solved-group-card"
+              style={{
+                backgroundColor: color.bg,
+                borderColor: color.border,
+              }}
               aria-label={`Solved category: ${category.categoryName}`}
             >
               <div className="solved-group-header">

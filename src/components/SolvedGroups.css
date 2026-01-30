@@ -6,9 +6,12 @@
 }
 
 .solved-groups-title {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
+  font-family: Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 200;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
   color: #333;
   margin-bottom: 20px;
   text-align: center;
