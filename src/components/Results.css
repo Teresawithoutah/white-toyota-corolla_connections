@@ -16,40 +16,42 @@
 }
 
 .categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 
 .category-card {
-  background-color: #fff;
-  border: 3px solid #ddd;
+  border: 3px solid;
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   transition: all 0.3s ease;
+  flex: 1;
+  min-width: 0;
+  color: #fff;
 }
 
 .category-card.solved {
-  border-color: #4caf50;
-  background-color: #f1f8f4;
+  /* Colors applied via inline style */
 }
 
 .category-card.revealed {
-  border-color: #ff5252;
-  background-color: #fff5f5;
+  /* Colors applied via inline style */
 }
 
 .category-header {
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #eee;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
 }
 
 .category-number {
   display: inline-block;
   width: 32px;
   height: 32px;
-  background-color: #646cff;
+  background-color: rgba(255, 255, 255, 0.3);
   color: #fff;
   border-radius: 50%;
   text-align: center;
@@ -60,26 +62,18 @@
   margin-right: 12px;
 }
 
-.category-card.solved .category-number {
-  background-color: #4caf50;
-}
-
-.category-card.revealed .category-number {
-  background-color: #ff5252;
-}
-
 .category-name {
   font-family: 'Helvetica', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: #333;
+  color: #fff;
   margin: 8px 0 4px 0;
 }
 
 .category-description {
   font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
   font-style: italic;
   margin: 4px 0;
 }
@@ -103,36 +97,62 @@
 }
 
 .category-word {
-  padding: 10px 16px;
-  background-color: #f9f9f9;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
   font-family: 'Helvetica', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: #fff;
   text-align: center;
   transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
-.category-card.solved .category-word {
-  background-color: #e8f5e9;
-  border-color: #4caf50;
-  color: #2e7d32;
-}
-
-.category-card.revealed .category-word {
-  background-color: #ffebee;
-  border-color: #ff5252;
-  color: #c62828;
+@media (max-width: 1024px) {
+  .categories-grid {
+    gap: 8px;
+  }
+  
+  .category-card {
+    padding: 12px;
+  }
+  
+  .category-name {
+    font-size: 16px;
+  }
+  
+  .category-description {
+    font-size: 11px;
+  }
+  
+  .category-word {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }
 
 @media (max-width: 768px) {
   .categories-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .category-card {
+    padding: 20px;
   }
   
   .results-title {
     font-size: 24px;
+  }
+  
+  .category-name {
+    font-size: 20px;
+  }
+  
+  .category-word {
+    font-size: 16px;
+    padding: 10px 16px;
   }
 }
