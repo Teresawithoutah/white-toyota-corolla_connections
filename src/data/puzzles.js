@@ -3,27 +3,27 @@ export const samplePuzzle = {
   id: 'valentines-2026',
   categories: [
     {
-      categoryName: 'Romantic Gestures',
-      description: 'Ways to show love',
-      words: ['Flowers', 'Chocolate', 'Love Letter', 'Surprise Date'],
+      categoryName: 'Features I Love',
+      description: 'Your sexiest parts',
+      words: ['Lips', 'Eyes', 'Traps', 'Chin'],
       difficulty: 'Easy'
     },
     {
-      categoryName: 'Valentine\'s Colors',
-      description: 'Colors associated with Valentine\'s Day',
-      words: ['Red', 'Pink', 'Rose', 'Crimson'],
-      difficulty: 'Easy'
-    },
-    {
-      categoryName: 'Sweet Treats',
-      description: 'Desserts and candies',
-      words: ['Cupcake', 'Macaron', 'Truffle', 'Fondant'],
+      categoryName: 'Traveled together to',
+      description: 'All the states we\'ve been together',
+      words: ['District of Columbia', 'New York', 'Pennsylvania', 'California'],
       difficulty: 'Medium'
     },
     {
-      categoryName: 'Love Songs',
-      description: 'Classic romantic songs',
-      words: ['At Last', 'Can\'t Help Myself', 'Unchained Melody', 'All of Me'],
+      categoryName: 'Nicknames',
+      description: 'Our petnames',
+      words: ['Biscuit', 'Babit', 'Bacon', 'Chicken'],
+      difficulty: 'Medium'
+    },
+    {
+      categoryName: 'Favorite Artists',
+      description: 'Names of artists from our favorite shared tines',
+      words: ['Sundays', 'Seal', 'MGMT', 'Dido'],
       difficulty: 'Hard'
     }
   ]
