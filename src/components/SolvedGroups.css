@@ -19,21 +19,24 @@
 
 .solved-groups-list {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 
 .solved-group-card {
   background-color: #4caf50;
   border: 3px solid #4caf50;
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   transition: all 0.3s ease;
   pointer-events: none;
   user-select: none;
+  flex: 1;
+  min-width: 0;
 }
 
 .solved-group-header {
@@ -42,15 +45,15 @@
 
 .solved-group-name {
   font-family: 'Helvetica', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .solved-group-description {
   font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.9);
   font-style: italic;
   margin: 0;
@@ -58,53 +61,69 @@
 
 .solved-group-words {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 6px;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .solved-group-word {
-  padding: 10px 18px;
+  padding: 6px 12px;
   background-color: rgba(255, 255, 255, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  border-radius: 6px;
   font-family: 'Helvetica', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: #fff;
   backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .solved-groups-list {
+    gap: 8px;
+  }
+  
+  .solved-group-card {
+    padding: 12px;
+  }
+  
+  .solved-group-name {
+    font-size: 16px;
+  }
+  
+  .solved-group-description {
+    font-size: 11px;
+  }
+  
+  .solved-group-word {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }
 
 @media (max-width: 768px) {
-  .solved-groups {
-    padding: 0 10px;
+  .solved-groups-list {
+    flex-direction: column;
+    gap: 12px;
   }
   
   .solved-group-card {
     padding: 16px;
   }
   
-  .solved-group-name {
-    font-size: 20px;
-  }
-  
   .solved-group-words {
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
   }
   
-  .solved-group-word {
-    font-size: 14px;
-    padding: 8px 14px;
-  }
-}
-
-@media (max-width: 480px) {
   .solved-group-name {
     font-size: 18px;
   }
   
   .solved-group-word {
-    font-size: 12px;
-    padding: 6px 12px;
+    font-size: 14px;
+    padding: 8px 14px;
   }
 }
