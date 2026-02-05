@@ -22,7 +22,7 @@ export const samplePuzzle = {
     },
     {
       categoryName: 'Favorite Artists',
-      description: 'Names of artists from our favorite shared tines',
+      description: 'Names of artists from our favorite shared tunes',
       words: ['Sundays', 'Seal', 'MGMT', 'Dido'],
       difficulty: 'Hard'
     }
