@@ -17,7 +17,7 @@ export const samplePuzzle = {
     {
       categoryName: 'Nicknames',
       description: 'Our petnames',
-      words: ['Biscuit', 'Babit', 'Bacon', 'Chicken'],
+      words: ['Biscuit', 'Lemon', 'Bacon', 'Chicken'],
       difficulty: 'Medium'
     },
     {
