@@ -1,0 +1,32 @@
+.baby-page {
+  background-color: #281136;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.baby-page-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baby-page-image {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .baby-page-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 500px;
+  }
+}

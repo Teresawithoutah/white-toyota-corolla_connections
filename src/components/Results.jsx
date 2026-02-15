@@ -8,7 +8,7 @@ const CATEGORY_COLORS = [
   { bg: '#ffcd05', border: '#ffcd05' }, // Yellow
 ];
 
-function Results({ puzzle, solvedCategories, gameState }) {
+function Results({ puzzle, solvedCategories, gameState, onBabyClick }) {
   if (gameState !== 'won' && gameState !== 'lost') return null;
 
   return (
@@ -48,6 +48,13 @@ function Results({ puzzle, solvedCategories, gameState }) {
           );
         })}
       </div>
+      <button
+        type="button"
+        className="results-baby-button"
+        onClick={onBabyClick}
+      >
+        if your my baby, click here
+      </button>
     </div>
   );
 }

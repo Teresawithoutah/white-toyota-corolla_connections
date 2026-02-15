@@ -5,6 +5,7 @@ import Controls from './Controls';
 import Status from './Status';
 import Results from './Results';
 import SolvedGroups from './SolvedGroups';
+import BabyPage from './BabyPage';
 import './Game.css';
 
 const MAX_MISTAKES = 4;
@@ -74,6 +75,7 @@ function Game({ puzzle }) {
   const [incorrectIds, setIncorrectIds] = useState([]);
   const [hint, setHint] = useState('');
   const [gameState, setGameState] = useState('playing'); // 'playing', 'won', 'lost'
+  const [showBabyPage, setShowBabyPage] = useState(false);
   const [solvedCategories, setSolvedCategories] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -260,6 +262,10 @@ function Game({ puzzle }) {
   const canSubmit = selectedIds.length === 4 && gameState === 'playing';
   const hasUnsolvedTiles = unsolvedTiles.length > 0;
 
+  if (showBabyPage) {
+    return <BabyPage />;
+  }
+
   return (
     <div className="game-container">
       <div className="game-header">
@@ -315,6 +321,7 @@ function Game({ puzzle }) {
           puzzle={puzzle}
           solvedCategories={solvedCategories}
           gameState={gameState}
+          onBabyClick={() => setShowBabyPage(true)}
         />
       )}
     </div>
